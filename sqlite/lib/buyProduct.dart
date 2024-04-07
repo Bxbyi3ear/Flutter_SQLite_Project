@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqlite/checkboxProduct.dart';
 
 class Product extends StatefulWidget {
   @override
@@ -42,34 +43,10 @@ class _ProductState extends State<Product> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProductSelectionPage()),
+                  MaterialPageRoute(builder: (context) => checkbox(selectedMember: selectedMember!)),
                 );
               },
               child: Text('ตกลง'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ProductSelectionPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('เลือกสินค้า'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.popUntil(context, ModalRoute.withName('/'));
-              },
-              child: Text('บันทึก'),
             ),
           ],
         ),
