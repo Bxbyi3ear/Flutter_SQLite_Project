@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class checkbox extends StatefulWidget {
   final Map<String, dynamic> selectedMember;
@@ -80,57 +81,63 @@ class _checkboxState extends State<checkbox> {
                       ),
                     ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('สรุปรายการสั่งซื้อ'),
-                            content: SingleChildScrollView(
-                              child: ListBody(
-                                children: <Widget>[
-                                  Text(
-                                    'สมาชิก: ${widget.selectedMember['name']}',
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('สรุปรายการสั่งซื้อ'),
+                                  content: SingleChildScrollView(
+                                    child: ListBody(
+                                      children: <Widget>[
+                                        Text(
+                                          'สมาชิก: ${widget.selectedMember['name']}',
+                                        ),
+                                        Text(
+                                          'สินค้า: ${selectedProduct!['productName']}',
+                                        ),
+                                        Text(
+                                          'ราคา: ${selectedProduct!['price']}',
+                                        ),
+                                        Text(
+                                          'จำนวน: $quantity',
+                                        ),
+                                        Text(
+                                          'ราคารวม: ${selectedProduct!['price'] * quantity}',
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Text(
-                                    'สินค้า: ${selectedProduct!['productName']}',
-                                  ),
-                                  Text(
-                                    'ราคา: ${selectedProduct!['price']}',
-                                  ),
-                                  Text(
-                                    'จำนวน: $quantity',
-                                  ),
-                                  Text(
-                                    'ราคารวม: ${selectedProduct!['price'] * quantity}',
-                                  ),
-                                ],
-                              ),
-                            ),
-                            actions: <Widget>[
-                              TextButton(
-                                child: Text('ยกเลิก'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                              TextButton(
-                                child: Text('ยืนยัน'),
-                                onPressed: () {
-                                  // ทำการบันทึกข้อมูลสั่งซื้อ
-                                  // โดยสามารถเพิ่มเข้าไปใน List ของรายการสั่งซื้อได้ตามต้องการ
-                                  // จากนั้นปิด dialog และกลับไปหน้าแรก
-                                  Navigator.pop(context);
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    child: Text('สั่งซื้อ'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text('ยกเลิก'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: Text('ยืนยัน'),
+                                      onPressed: () {
+                                        // ทำการบันทึกข้อมูลสั่งซื้อ
+                                        // โดยสามารถเพิ่มเข้าไปใน List ของรายการสั่งซื้อได้ตามต้องการ
+                                        // จากนั้นปิด dialog และกลับไปหน้าแรก
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: Text('สั่งซื้อ'),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

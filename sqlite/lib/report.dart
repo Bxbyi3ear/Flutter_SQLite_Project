@@ -32,7 +32,8 @@ class _ReportState extends State<Report> {
                   selectedMember = newValue;
                 });
               },
-              items: members.map<DropdownMenuItem<Map<String, dynamic>>>((member) {
+              items:
+                  members.map<DropdownMenuItem<Map<String, dynamic>>>((member) {
                 return DropdownMenuItem<Map<String, dynamic>>(
                   value: member,
                   child: Text('${member['memberID']} - ${member['name']}'),
@@ -43,11 +44,25 @@ class _ReportState extends State<Report> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => OrderSummaryPage(poid: 'PO001', memberId: '1', memberName: 'John', orderDetails: [
-                    {'productName': 'Product A', 'price': 100, 'quantity': 2},
-                    {'productName': 'Product B', 'price': 150, 'quantity': 1},
-                  ], totalAmount: 350),
-                ),
+                  MaterialPageRoute(
+                    builder: (context) => OrderSummaryPage(
+                        poid: 'PO001',
+                        memberId: '1',
+                        memberName: 'John',
+                        orderDetails: [
+                          {
+                            'productName': 'Product A',
+                            'price': 100,
+                            'quantity': 2
+                          },
+                          {
+                            'productName': 'Product B',
+                            'price': 150,
+                            'quantity': 1
+                          },
+                        ],
+                        totalAmount: 350),
+                  ),
                 );
               },
               child: Text('ตกลง'),

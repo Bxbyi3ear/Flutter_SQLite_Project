@@ -22,7 +22,7 @@ class _ProductState extends State<Product> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DropdownButton<Map<String, dynamic>>(
               hint: Text('รหัสสมาชิก - ชื่อสมาชิก'),
@@ -39,6 +39,7 @@ class _ProductState extends State<Product> {
                 );
               }).toList(),
             ),
+            Spacer(),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -46,7 +47,7 @@ class _ProductState extends State<Product> {
                   MaterialPageRoute(builder: (context) => checkbox(selectedMember: selectedMember!)),
                 );
               },
-              child: Text('ตกลง'),
+              child: const Text('ตกลง'),
             ),
           ],
         ),
