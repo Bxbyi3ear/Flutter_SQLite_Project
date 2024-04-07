@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqlite/OrderSummary.dart';
 
 class Report extends StatefulWidget {
   @override
@@ -42,24 +43,17 @@ class _ReportState extends State<Report> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ReportSelectionPage()),
+                  MaterialPageRoute(builder: (context) => OrderSummaryPage(poid: 'PO001', memberId: '1', memberName: 'John', orderDetails: [
+                    {'productName': 'Product A', 'price': 100, 'quantity': 2},
+                    {'productName': 'Product B', 'price': 150, 'quantity': 1},
+                  ], totalAmount: 350),
+                ),
                 );
               },
               child: Text('ตกลง'),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ReportSelectionPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('แสดงรายการสินค้า'),
       ),
     );
   }
