@@ -43,7 +43,7 @@ class OrderSummaryPage extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
-          'Total Amount: $totalAmount บาท',
+          'Total Amount: $totalAmount',
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
