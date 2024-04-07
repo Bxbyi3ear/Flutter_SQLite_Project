@@ -18,7 +18,7 @@ class _checkboxState extends State<checkbox> {
   ];
 
   // สินค้าที่ถูกเลือก
-  Map<String, dynamic> selectedProduct = {};
+  Map<String, dynamic>? selectedProduct;
 
   // จำนวนที่ต้องการ
   int quantity = 1;
@@ -32,46 +32,57 @@ class _checkboxState extends State<checkbox> {
       body: ListView.builder(
         itemCount: products.length,
         itemBuilder: (context, index) {
-          return CheckboxListTile(
+          return ListTile(
             title: Text(
-              '${products[index]['productName']} - ${products[index]['price']} Bath',
+              '${products[index]['productName']} - ${products[index]['price']} บาท',
             ),
-            value: selectedProduct == products[index],
-            onChanged: (bool? value) {
-              setState(() {
-                if (value != null && value) {
-                  selectedProduct = products[index];
-                } else {
-                  selectedProduct = {};
-                }
-              });
-            },
+            trailing: Checkbox(
+              value: selectedProduct == products[index],
+              onChanged: (bool? value) {
+                setState(() {
+                  if (value != null && value) {
+                    selectedProduct = products[index];
+                  } else {
+                    selectedProduct = null;
+                  }
+                });
+              },
+            ),
           );
         },
       ),
-      bottomNavigationBar: selectedProduct.isNotEmpty
+      bottomNavigationBar: selectedProduct != null
           ? Padding(
               padding: EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('จำนวน:'),
-                  IconButton(
-                    icon: Icon(Icons.remove),
-                    onPressed: () {
-                      setState(() {
-                        quantity = quantity > 1 ? quantity - 1 : quantity;
-                      });
-                    },
-                  ),
-                  Text(quantity.toString()),
-                  IconButton(
-                    icon: Icon(Icons.add),
-                    onPressed: () {
-                      setState(() {
-                        quantity += 1;
-                      });
-                    },
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('จำนวน:'),
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.remove),
+                            onPressed: () {
+                              setState(() {
+                                quantity = quantity > 1 ? quantity - 1 : quantity;
+                              });
+                            },
+                          ),
+                          Text(quantity.toString()),
+                          IconButton(
+                            icon: Icon(Icons.add),
+                            onPressed: () {
+                              setState(() {
+                                quantity += 1;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -88,16 +99,16 @@ class _checkboxState extends State<checkbox> {
                                     'สมาชิก: ${widget.selectedMember['name']}',
                                   ),
                                   Text(
-                                    'สินค้า: ${selectedProduct['productName']}',
+                                    'สินค้า: ${selectedProduct!['productName']}',
                                   ),
                                   Text(
-                                    'ราคา: ${selectedProduct['price']}',
+                                    'ราคา: ${selectedProduct!['price']}',
                                   ),
                                   Text(
                                     'จำนวน: $quantity',
                                   ),
                                   Text(
-                                    'ราคารวม: ${selectedProduct['price'] * quantity}',
+                                    'ราคารวม: ${selectedProduct!['price'] * quantity}',
                                   ),
                                 ],
                               ),
