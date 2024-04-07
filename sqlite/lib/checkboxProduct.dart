@@ -10,17 +10,13 @@ class checkbox extends StatefulWidget {
 }
 
 class _checkboxState extends State<checkbox> {
-  // รายการสินค้า
   List<Map<String, dynamic>> products = [
     {'productCode': 'A001', 'productName': 'Product A', 'price': 100},
     {'productCode': 'B001', 'productName': 'Product B', 'price': 150},
-    // เพิ่มรายการสินค้าเพิ่มเติมตามต้องการ
   ];
 
-  // สินค้าที่ถูกเลือก
   Map<String, dynamic>? selectedProduct;
 
-  // จำนวนที่ต้องการ
   int quantity = 1;
 
   @override
@@ -86,7 +82,6 @@ class _checkboxState extends State<checkbox> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // แสดงรายละเอียดสรุปของสินค้าที่เลือกและจำนวนที่เลือก
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
